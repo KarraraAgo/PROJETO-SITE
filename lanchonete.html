@@ -1,0 +1,1684 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOOD LANCHES</title><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script><!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script><!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><!-- Stylesheet Personalizado -->
+  <link rel="stylesheet" href="style.css"><!-- Element SDK -->
+  <script src="/_sdk/element_sdk.js"></script><!-- Data SDK -->
+  <script src="/_sdk/data_sdk.js"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pizza-red': '#D32F2F',
+                        'pizza-yellow': '#FFC107',
+                        'pizza-orange': '#FF5722',
+                        'pizza-dark': '#1A1A1A',
+                        'pizza-cream': '#FFF8E1'
+                    },
+                    fontFamily: {
+                        'display': ['Fredoka One', 'cursive'],
+                        'body': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+ </head>
+ <body class="h-full bg-pizza-dark text-white font-body">
+  <!-- ==========================================
+         CONTAINER PRINCIPAL DA APLICAÇÃO
+         ========================================== -->
+  <div id="app" class="h-full overflow-auto">
+   <!-- ==========================================
+             HEADER / NAVEGAÇÃO DO SITE
+             ========================================== -->
+   <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-pizza-dark/95 backdrop-blur-md border-b border-pizza-red/30">
+    <nav class="max-w-7xl mx-auto px-4 py-3">
+     <div class="flex items-center justify-between">
+      <!-- Logo da Pizzaria -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+       <div class="w-12 h-12 bg-pizza-red rounded-full flex items-center justify-center">
+        <span class="text-2xl">🍔</span>
+       </div>
+       <div>
+        <h1 id="header-name" class="font-display text-xl text-pizza-yellow">GOOD LANCHES</h1>
+        <p class="text-xs text-gray-400">A melhor da região!</p>
+       </div>
+      </div><!-- Menu de Navegação Desktop -->
+      <div class="hidden md:flex items-center gap-6">
+       <button onclick="navigateTo('home')" class="nav-link text-gray-300 hover:text-pizza-yellow transition-colors">Início</button> <button onclick="navigateTo('menu')" class="nav-link text-gray-300 hover:text-pizza-yellow transition-colors">Cardápio</button> <button onclick="navigateTo('cart')" class="nav-link text-gray-300 hover:text-pizza-yellow transition-colors flex items-center gap-2"> <i data-lucide="shopping-cart" class="w-5 h-5"></i> <span id="cart-count" class="bg-pizza-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span> </button> <button onclick="navigateTo('tracking')" class="nav-link text-gray-300 hover:text-pizza-yellow transition-colors"> <i data-lucide="map-pin" class="w-5 h-5"></i> </button> <button id="user-btn" onclick="handleUserClick()" class="bg-pizza-yellow text-pizza-dark px-4 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors flex items-center gap-2"> <i data-lucide="user" class="w-4 h-4"></i> <span id="user-btn-text">Entrar</span> </button>
+      </div><!-- Menu Mobile --> <button id="mobile-menu-btn" class="md:hidden text-white" onclick="toggleMobileMenu()"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+     </div><!-- Menu Mobile Expandido -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-700 pt-4">
+      <div class="flex flex-col gap-4">
+       <button onclick="navigateTo('home')" class="text-left text-gray-300 hover:text-pizza-yellow">Início</button> <button onclick="navigateTo('menu')" class="text-left text-gray-300 hover:text-pizza-yellow">Cardápio</button> <button onclick="navigateTo('cart')" class="text-left text-gray-300 hover:text-pizza-yellow flex items-center gap-2"> Carrinho <span id="cart-count-mobile" class="bg-pizza-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span> </button> <button onclick="navigateTo('tracking')" class="text-left text-gray-300 hover:text-pizza-yellow">Acompanhar Pedido</button> <button onclick="handleUserClick()" class="text-left text-pizza-yellow font-semibold">Entrar / Cadastrar</button>
+      </div>
+     </div>
+    </nav>
+   </header><!-- ==========================================
+             PÁGINA INICIAL (HOME)
+             ========================================== -->
+   <main id="page-home" class="page pt-20">
+    <!-- Banner Principal -->
+    <section id="hero-banner" class="relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden">
+     <!-- Imagem de Fundo do Banner -->
+     <div class="absolute inset-0 bg-gradient-to-r from-pizza-dark via-pizza-dark/80 to-transparent z-10"></div>
+     <div class="absolute inset-0">
+      <!-- ALTERE ESTA IMAGEM: Substitua a URL abaixo pela imagem do seu banner -->
+      <svg class="w-full h-full" viewbox="0 0 800 600" preserveaspectratio="xMidYMid slice">
+       <defs>
+        <radialgradient id="pizzaGrad" cx="50%" cy="50%" r="50%">
+         <stop offset="0%" style="stop-color:#FFC107" />
+         <stop offset="70%" style="stop-color:#FF8F00" />
+         <stop offset="100%" style="stop-color:#D32F2F" />
+        </radialgradient>
+       </defs> <rect fill="#1A1A1A" width="800" height="600" /> <circle cx="600" cy="300" r="250" fill="url(#pizzaGrad)" opacity="0.3" /> <circle cx="650" cy="280" r="180" fill="#D32F2F" opacity="0.2" /> <!-- Pizza ilustrativa --> <circle cx="580" cy="320" r="150" fill="#FFC107" /> <circle cx="580" cy="320" r="140" fill="#FF8F00" /> <circle cx="580" cy="320" r="130" fill="#FFEB3B" /> <!-- Pepperoni --> <circle cx="520" cy="280" r="20" fill="#D32F2F" /> <circle cx="620" cy="260" r="18" fill="#D32F2F" /> <circle cx="560" cy="350" r="22" fill="#D32F2F" /> <circle cx="640" cy="340" r="19" fill="#D32F2F" /> <circle cx="540" cy="400" r="17" fill="#D32F2F" /> <circle cx="600" cy="380" r="21" fill="#D32F2F" /> <!-- Queijo derretido --> <ellipse cx="550" cy="300" rx="30" ry="15" fill="#FFF8E1" opacity="0.7" /> <ellipse cx="610" cy="320" rx="25" ry="12" fill="#FFF8E1" opacity="0.6" />
+      </svg>
+     </div><!-- Conteúdo do Banner -->
+     <div class="relative z-20 max-w-7xl mx-auto px-4 py-12">
+      <div class="max-w-xl animate-fade-in">
+       <span class="inline-block bg-pizza-red text-white px-4 py-1 rounded-full text-sm font-medium mb-4"> 🔥 Promoção do Dia! </span>
+       <h1 id="hero-title" class="font-display text-4xl md:text-6xl text-white mb-4 leading-tight">GOOD LANCHES</h1>
+       <p id="hero-slogan" class="text-xl md:text-2xl text-pizza-yellow mb-2">Comida boa e rápida!</p>
+       <p class="text-gray-300 mb-8 text-lg">Os melhores lanches e comidas rápidas do bairro. Peça agora e receba quentinho na sua porta!</p>
+       <div class="flex flex-col sm:flex-row gap-4">
+        <button onclick="navigateTo('menu')" class="bg-pizza-yellow text-pizza-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all pulse-glow flex items-center justify-center gap-2"> <i data-lucide="book-open" class="w-5 h-5"></i> Ver Cardápio </button> <button onclick="scrollToSection('contact')" class="border-2 border-pizza-yellow text-pizza-yellow px-8 py-4 rounded-full font-bold text-lg hover:bg-pizza-yellow hover:text-pizza-dark transition-all flex items-center justify-center gap-2"> <i data-lucide="phone" class="w-5 h-5"></i> Fale Conosco </button>
+       </div>
+      </div>
+     </div>
+    </section><!-- Seção de Destaques -->
+    <section class="py-16 bg-pizza-gradient">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+       <h2 class="font-display text-3xl md:text-4xl text-pizza-yellow mb-4">Por que nos escolher?</h2>
+       <p class="text-gray-400">Qualidade e rapidez em cada pedido</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <!-- Card 1 - Ingredientes -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 card-hover text-center">
+        <div class="w-16 h-16 bg-pizza-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <span class="text-3xl">🥩</span>
+        </div>
+        <h3 class="font-display text-xl text-white mb-3">Ingredientes Frescos</h3>
+        <p class="text-gray-400">Selecionamos os melhores ingredientes frescos todos os dias para garantir o melhor gosto.</p>
+       </div><!-- Card 2 - Entrega -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 card-hover text-center">
+        <div class="w-16 h-16 bg-pizza-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <span class="text-3xl">⚡</span>
+        </div>
+        <h3 class="font-display text-xl text-white mb-3">Super Rápido</h3>
+        <p class="text-gray-400">Seus lanches prontos em minutos! Entrega rápida e eficiente no seu bairro.</p>
+       </div><!-- Card 3 - Tradição -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 card-hover text-center">
+        <div class="w-16 h-16 bg-pizza-orange/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <span class="text-3xl">👨‍🍳</span>
+        </div>
+        <h3 class="font-display text-xl text-white mb-3">Receita Especial</h3>
+        <p class="text-gray-400">Receitas testadas e aprovadas, preparadas com carinho e experiência no dia a dia.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- Seção Sobre a Pizzaria -->
+    <section id="about-section" class="py-16 bg-pizza-dark">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+       <!-- Imagem -->
+       <div class="relative">
+        <svg class="w-full rounded-2xl" viewbox="0 0 400 300">
+         <rect fill="#2D2D2D" width="400" height="300" rx="16" /> <!-- X-Burger --> <circle cx="200" cy="80" r="60" fill="#D4823F" /> <rect x="155" y="140" width="90" height="50" rx="5" fill="#8B4513" /> <circle cx="200" cy="95" r="30" fill="#8B3A0A" /> <ellipse cx="200" cy="90" rx="35" ry="25" fill="#D4A574" /> <circle cx="185" cy="85" r="5" fill="#2D2D2D" /> <circle cx="215" cy="85" r="5" fill="#2D2D2D" /> <!-- Batata --> <rect x="250" y="140" width="40" height="60" rx="3" fill="#DC9D3A" /> <rect x="260" y="145" width="8" height="20" fill="#F5A623" /> <rect x="265" y="165" width="8" height="20" fill="#F5A623" /> <!-- Refrigerante --> <rect x="80" y="150" width="35" height="70" rx="3" fill="#DC143C" /> <circle cx="97.5" cy="145" r="20" fill="#FFF" /> <text x="200" y="280" text-anchor="middle" fill="#FFC107" font-size="14" font-family="sans-serif">
+          Nossos Lanches
+         </text>
+        </svg>
+        <div class="absolute -bottom-4 -right-4 bg-pizza-red text-white p-4 rounded-xl">
+         <p class="font-display text-2xl">+8</p>
+         <p class="text-sm">Anos de experiência</p>
+        </div>
+       </div><!-- Texto Sobre -->
+       <div>
+        <span class="text-pizza-red font-medium">Sobre Nós</span>
+        <h2 class="font-display text-3xl md:text-4xl text-white mt-2 mb-6">Nossa História</h2>
+        <p id="about-text" class="text-gray-300 mb-6 leading-relaxed">Desde 2016, a GOOD LANCHES tem sido o ponto de encontro de famílias, amigos e vizinhos que buscam comida boa, rápida e com qualidade. Começamos com sonho de oferecer os melhores lanches da região e hoje somos referência no bairro, mantendo sempre a dedicação em cada pedido.</p>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+         <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-pizza-yellow"></i> <span class="text-gray-300">Ingredientes frescos</span>
+         </div>
+         <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-pizza-yellow"></i> <span class="text-gray-300">Modo rápido</span>
+         </div>
+         <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-pizza-yellow"></i> <span class="text-gray-300">Preço justo</span>
+         </div>
+         <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-pizza-yellow"></i> <span class="text-gray-300">Muito saboroso</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Seção de Horário e Contato -->
+    <section id="contact" class="py-16 bg-pizza-gradient">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+       <h2 class="font-display text-3xl md:text-4xl text-pizza-yellow mb-4">Horário &amp; Contato</h2>
+       <p class="text-gray-400">Estamos esperando você!</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <!-- Horário -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 text-center">
+        <div class="w-16 h-16 bg-pizza-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <i data-lucide="clock" class="w-8 h-8 text-pizza-yellow"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-4">Horário de Funcionamento</h3>
+        <p id="working-hours" class="text-gray-300">Segunda a Domingo</p>
+        <p class="text-pizza-yellow font-semibold text-lg">10:00 às 22:00</p>
+       </div><!-- Endereço -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 text-center">
+        <div class="w-16 h-16 bg-pizza-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <i data-lucide="map-pin" class="w-8 h-8 text-pizza-red"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-4">Nosso Endereço</h3>
+        <p id="address-text" class="text-gray-300">Rua dos Lanches, 456</p>
+        <p class="text-gray-300">Centro - Seu Bairro</p>
+       </div><!-- Contatos -->
+       <div class="bg-pizza-dark/50 p-8 rounded-2xl border border-pizza-red/20 text-center">
+        <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+         <i data-lucide="message-circle" class="w-8 h-8 text-green-500"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-4">Fale Conosco</h3>
+        <div class="space-y-3">
+         <a id="whatsapp-link" href="https://wa.me/81986516772" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-500 transition-colors"> <i data-lucide="phone" class="w-4 h-4"></i> WhatsApp </a> <a id="instagram-link" href="https://instagram.com/goodlanches_" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity"> <i data-lucide="instagram" class="w-4 h-4"></i> Instagram </a>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Rodapé -->
+    <footer class="bg-pizza-dark border-t border-pizza-red/20 py-8">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-pizza-red rounded-full flex items-center justify-center">
+         <span class="text-xl">🍕</span>
+        </div>
+        <div>
+         <p id="footer-name" class="font-display text-pizza-yellow">GOOD LANCHES</p>
+         <p class="text-xs text-gray-500">Sabor que conquista!</p>
+        </div>
+       </div>
+       <p class="text-gray-500 text-sm">© 2024 GOOD LANCHES. Todos os direitos reservados.</p>
+      </div>
+     </div>
+    </footer>
+   </main><!-- ==========================================
+             PÁGINA DE CARDÁPIO
+             ========================================== -->
+   <main id="page-menu" class="page hidden pt-24 pb-8">
+    <div class="max-w-7xl mx-auto px-4">
+     <!-- Cabeçalho do Cardápio -->
+     <div class="text-center mb-8">
+      <h1 class="font-display text-4xl text-pizza-yellow mb-2">Nosso Cardápio</h1>
+      <p class="text-gray-400">Escolha sua delícia favorita!</p>
+     </div><!-- Filtro de Categorias -->
+     <div id="category-tabs" class="flex flex-wrap justify-center gap-4 mb-8">
+      <button onclick="filterCategory('all')" class="category-tab tab-active px-6 py-2 rounded-full bg-pizza-dark/50 border border-pizza-red/20 text-white hover:border-pizza-yellow transition-colors" data-category="all"> Todos </button> <button onclick="filterCategory('pizzas')" class="category-tab px-6 py-2 rounded-full bg-pizza-dark/50 border border-pizza-red/20 text-white hover:border-pizza-yellow transition-colors" data-category="pizzas"> 🍕 Pizzas </button> <button onclick="filterCategory('lanches')" class="category-tab px-6 py-2 rounded-full bg-pizza-dark/50 border border-pizza-red/20 text-white hover:border-pizza-yellow transition-colors" data-category="lanches"> 🍔 Lanches </button> <button onclick="filterCategory('bebidas')" class="category-tab px-6 py-2 rounded-full bg-pizza-dark/50 border border-pizza-red/20 text-white hover:border-pizza-yellow transition-colors" data-category="bebidas"> 🥤 Bebidas </button> <button onclick="filterCategory('combos')" class="category-tab px-6 py-2 rounded-full bg-pizza-dark/50 border border-pizza-red/20 text-white hover:border-pizza-yellow transition-colors" data-category="combos"> 🎁 Combos </button>
+     </div><!-- Lista de Produtos do Cardápio -->
+     <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Os produtos serão inseridos via JavaScript -->
+     </div>
+    </div>
+   </main><!-- ==========================================
+             PÁGINA DE PERSONALIZAÇÃO DO PEDIDO
+             ========================================== -->
+   <main id="page-customize" class="page hidden pt-24 pb-8">
+    <div class="max-w-2xl mx-auto px-4">
+     <!-- Cabeçalho --> <button onclick="navigateTo('menu')" class="flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"> <i data-lucide="arrow-left" class="w-5 h-5"></i> Voltar ao cardápio </button>
+     <div class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6">
+      <!-- Produto selecionado -->
+      <div id="customize-product" class="flex gap-4 mb-6 pb-6 border-b border-gray-700">
+       <div id="customize-image" class="w-24 h-24 bg-pizza-red/20 rounded-xl flex items-center justify-center">
+        <span class="text-4xl">🍕</span>
+       </div>
+       <div>
+        <h2 id="customize-name" class="font-display text-2xl text-white">Pizza Margherita</h2>
+        <p id="customize-description" class="text-gray-400 text-sm">Molho de tomate, mussarela e manjericão</p>
+        <p id="customize-price" class="text-pizza-yellow font-bold text-lg mt-2">R$ 45,00</p>
+       </div>
+      </div><!-- Ingredientes Padrão -->
+      <div class="mb-6">
+       <h3 class="font-display text-lg text-white mb-4 flex items-center gap-2"><i data-lucide="list" class="w-5 h-5 text-pizza-yellow"></i> Ingredientes Padrão</h3>
+       <p class="text-gray-500 text-sm mb-3">Clique para remover ingredientes</p>
+       <div id="default-ingredients" class="flex flex-wrap gap-2">
+        <!-- Ingredientes serão inseridos via JavaScript -->
+       </div>
+      </div><!-- Ingredientes Extras -->
+      <div class="mb-6">
+       <h3 class="font-display text-lg text-white mb-4 flex items-center gap-2"><i data-lucide="plus-circle" class="w-5 h-5 text-pizza-yellow"></i> Adicionar Extras <span class="text-sm text-gray-500">(+R$ 5,00 cada)</span></h3>
+       <div id="extra-ingredients" class="flex flex-wrap gap-2">
+        <!-- Ingredientes extras serão inseridos via JavaScript -->
+       </div>
+      </div><!-- Observações -->
+      <div class="mb-6">
+       <label class="font-display text-lg text-white mb-2 block">Observações</label> <textarea id="customize-notes" rows="2" placeholder="Ex: Sem cebola, bem assada..." class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none"></textarea>
+      </div><!-- Quantidade e Total -->
+      <div class="flex items-center justify-between mb-6">
+       <div class="flex items-center gap-4">
+        <span class="text-gray-400">Quantidade:</span>
+        <div class="flex items-center gap-3">
+         <button onclick="updateCustomizeQuantity(-1)" class="w-10 h-10 bg-pizza-dark border border-gray-700 rounded-full flex items-center justify-center text-white hover:border-pizza-yellow transition-colors"> <i data-lucide="minus" class="w-4 h-4"></i> </button> <span id="customize-quantity" class="text-xl font-bold text-white w-8 text-center">1</span> <button onclick="updateCustomizeQuantity(1)" class="w-10 h-10 bg-pizza-dark border border-gray-700 rounded-full flex items-center justify-center text-white hover:border-pizza-yellow transition-colors"> <i data-lucide="plus" class="w-4 h-4"></i> </button>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="text-gray-400 text-sm">Total:</p>
+        <p id="customize-total" class="text-2xl font-bold text-pizza-yellow">R$ 45,00</p>
+       </div>
+      </div><!-- Botão Adicionar ao Carrinho --> <button onclick="addCustomizedToCart()" class="w-full bg-pizza-yellow text-pizza-dark py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"> <i data-lucide="shopping-cart" class="w-5 h-5"></i> Adicionar ao Carrinho </button>
+     </div>
+    </div>
+   </main><!-- ==========================================
+             PÁGINA DE LOGIN / CADASTRO
+             ========================================== -->
+   <main id="page-login" class="page hidden pt-24 pb-8">
+    <div class="max-w-md mx-auto px-4">
+     <div class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6">
+      <!-- Tabs Login/Cadastro -->
+      <div class="flex mb-6 border-b border-gray-700">
+       <button id="login-tab" onclick="switchAuthTab('login')" class="flex-1 py-3 text-center font-semibold text-pizza-yellow border-b-2 border-pizza-yellow"> Entrar </button> <button id="register-tab" onclick="switchAuthTab('register')" class="flex-1 py-3 text-center font-semibold text-gray-400 border-b-2 border-transparent hover:text-white transition-colors"> Cadastrar </button>
+      </div><!-- Formulário de Login -->
+      <form id="login-form" onsubmit="handleLogin(event)">
+       <div class="space-y-4">
+        <div>
+         <label for="login-email" class="block text-gray-400 mb-2">Email</label> <input type="email" id="login-email" placeholder="seu@email.com" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="login-password" class="block text-gray-400 mb-2">Senha</label> <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div id="login-error" class="hidden text-red-500 text-sm p-3 bg-red-500/10 rounded-xl"></div><button type="submit" class="w-full bg-pizza-yellow text-pizza-dark py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors"> Entrar </button>
+       </div>
+      </form><!-- Formulário de Cadastro -->
+      <form id="register-form" class="hidden" onsubmit="handleRegister(event)">
+       <div class="space-y-4">
+        <div>
+         <label for="register-name" class="block text-gray-400 mb-2">Nome Completo *</label> <input type="text" id="register-name" placeholder="João da Silva" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="register-phone" class="block text-gray-400 mb-2">Telefone/WhatsApp *</label> <input type="tel" id="register-phone" placeholder="(11) 99999-9999" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="register-email" class="block text-gray-400 mb-2">Email *</label> <input type="email" id="register-email" placeholder="seu@email.com" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="register-password" class="block text-gray-400 mb-2">Senha *</label> <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required minlength="6">
+        </div>
+        <div>
+         <label for="register-address" class="block text-gray-400 mb-2">Endereço de Entrega *</label> <textarea id="register-address" rows="2" placeholder="Rua, número, bairro, complemento..." class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required></textarea>
+        </div>
+        <div id="register-error" class="hidden text-red-500 text-sm p-3 bg-red-500/10 rounded-xl"></div><button type="submit" class="w-full bg-pizza-yellow text-pizza-dark py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors"> Criar Conta </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </main><!-- ==========================================
+             PÁGINA DO CARRINHO
+             ========================================== -->
+   <main id="page-cart" class="page hidden pt-24 pb-8">
+    <div class="max-w-3xl mx-auto px-4">
+     <h1 class="font-display text-3xl text-pizza-yellow mb-6 flex items-center gap-3"><i data-lucide="shopping-cart" class="w-8 h-8"></i> Seu Carrinho</h1><!-- Lista de Itens do Carrinho -->
+     <div id="cart-items" class="space-y-4 mb-6">
+      <!-- Itens serão inseridos via JavaScript -->
+     </div><!-- Carrinho Vazio -->
+     <div id="cart-empty" class="hidden text-center py-12">
+      <div class="w-24 h-24 bg-pizza-dark/50 rounded-full flex items-center justify-center mx-auto mb-4">
+       <span class="text-5xl">🛒</span>
+      </div>
+      <h2 class="font-display text-2xl text-gray-400 mb-4">Seu carrinho está vazio</h2>
+      <p class="text-gray-500 mb-6">Adicione delícias do nosso cardápio!</p><button onclick="navigateTo('menu')" class="bg-pizza-yellow text-pizza-dark px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors"> Ver Cardápio </button>
+     </div><!-- Resumo do Pedido -->
+     <div id="cart-summary" class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6">
+      <h2 class="font-display text-xl text-white mb-4">Resumo do Pedido</h2>
+      <div class="space-y-3 mb-4">
+       <div class="flex justify-between text-gray-400">
+        <span>Subtotal</span> <span id="cart-subtotal">R$ 0,00</span>
+       </div>
+       <div class="flex justify-between text-gray-400">
+        <span>Taxa de Entrega</span> <span id="cart-delivery">R$ 5,00</span>
+       </div>
+       <div class="border-t border-gray-700 pt-3 flex justify-between text-white font-bold text-lg">
+        <span>Total</span> <span id="cart-total" class="text-pizza-yellow">R$ 5,00</span>
+       </div>
+      </div><!-- Endereço de Entrega -->
+      <div id="delivery-address-section" class="mb-4 p-4 bg-pizza-dark rounded-xl">
+       <div class="flex items-center justify-between mb-2">
+        <span class="text-gray-400 flex items-center gap-2"> <i data-lucide="map-pin" class="w-4 h-4"></i> Entregar em: </span> <button onclick="navigateTo('login')" class="text-pizza-yellow text-sm hover:underline">Alterar</button>
+       </div>
+       <p id="delivery-address" class="text-white">Faça login para adicionar endereço</p>
+      </div><!-- Forma de Pagamento -->
+      <div id="payment-section" class="mb-6 p-4 bg-pizza-dark rounded-xl border border-pizza-red/20">
+       <label class="text-gray-300 font-semibold flex items-center gap-2 mb-4">
+        <i data-lucide="credit-card" class="w-5 h-5"></i> Forma de Pagamento
+        <span class="text-pizza-red text-sm">*</span>
+       </label>
+       <div class="grid grid-cols-2 gap-3 mb-4">
+        <label class="relative">
+         <input type="radio" name="payment-method" value="pix" onchange="handlePaymentChange()" class="sr-only">
+         <div class="payment-option p-4 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-pizza-yellow transition-colors text-center" id="pix-option">
+          <i data-lucide="qr-code" class="w-6 h-6 mx-auto mb-2 text-pizza-yellow"></i>
+          <p class="text-white font-semibold">PIX</p>
+          <p class="text-xs text-gray-400">Pagamento imediato</p>
+         </div>
+        </label>
+        <label class="relative">
+         <input type="radio" name="payment-method" value="cash" onchange="handlePaymentChange()" class="sr-only">
+         <div class="payment-option p-4 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-pizza-yellow transition-colors text-center" id="cash-option">
+          <i data-lucide="banknote" class="w-6 h-6 mx-auto mb-2 text-pizza-yellow"></i>
+          <p class="text-white font-semibold">DINHEIRO</p>
+          <p class="text-xs text-gray-400">Pagar na hora</p>
+         </div>
+        </label>
+       </div>
+       <!-- Opções de Dinheiro -->
+       <div id="cash-options" class="hidden mb-4 p-3 bg-pizza-dark/50 rounded-lg border border-pizza-red/10">
+        <p class="text-gray-400 text-sm mb-3">Onde você vai pagar?</p>
+        <div class="space-y-2">
+         <label class="flex items-center gap-3 cursor-pointer p-2 rounded hover:bg-pizza-dark/30">
+          <input type="radio" name="cash-location" value="delivery" class="w-4 h-4 accent-pizza-yellow">
+          <span class="text-white">Na entrega</span>
+         </label>
+         <label class="flex items-center gap-3 cursor-pointer p-2 rounded hover:bg-pizza-dark/30">
+          <input type="radio" name="cash-location" value="store" class="w-4 h-4 accent-pizza-yellow">
+          <span class="text-white">Na lanchonete</span>
+         </label>
+        </div>
+       </div>
+       <!-- Confirmação PIX -->
+       <div id="pix-options" class="hidden mb-4 p-3 bg-pizza-yellow/10 rounded-lg border border-pizza-yellow/30">
+        <p class="text-pizza-yellow text-sm font-semibold mb-2">📱 PIX Ativado</p>
+        <p class="text-gray-300 text-sm">Você receberá um código QR ou dados de pagamento para confirmar. O pedido só será confirmado após a confirmação do pagamento.</p>
+       </div>
+      </div><button onclick="finishOrder()" class="w-full bg-pizza-yellow text-pizza-dark py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"> <i data-lucide="check-circle" class="w-5 h-5"></i> Finalizar Pedido </button>
+     </div>
+    </div>
+   </main><!-- ==========================================
+             PÁGINA DE ACOMPANHAMENTO DO PEDIDO
+             ========================================== -->
+   <main id="page-tracking" class="page hidden pt-24 pb-8">
+    <div class="max-w-2xl mx-auto px-4">
+     <h1 class="font-display text-3xl text-pizza-yellow mb-6 text-center">Acompanhe seu Pedido</h1><!-- Sem pedidos -->
+     <div id="no-orders" class="text-center py-12">
+      <div class="w-24 h-24 bg-pizza-dark/50 rounded-full flex items-center justify-center mx-auto mb-4">
+       <span class="text-5xl">📦</span>
+      </div>
+      <h2 class="font-display text-2xl text-gray-400 mb-4">Nenhum pedido ativo</h2>
+      <p class="text-gray-500 mb-6">Faça um pedido para acompanhar aqui!</p><button onclick="navigateTo('menu')" class="bg-pizza-yellow text-pizza-dark px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors"> Ver Cardápio </button>
+     </div><!-- Pedido Ativo -->
+     <div id="active-order" class="hidden bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6">
+      <!-- Número do Pedido -->
+      <div class="text-center mb-6">
+       <span class="text-gray-400">Pedido</span>
+       <p id="order-number" class="font-display text-2xl text-white">#0001</p>
+      </div><!-- Barra de Progresso -->
+      <div class="mb-8">
+       <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+        <div id="progress-bar" class="progress-bar h-full bg-pizza-yellow rounded-full" style="width: 25%"></div>
+       </div>
+      </div><!-- Status do Pedido -->
+      <div id="order-status-steps" class="space-y-4 mb-8">
+       <div class="status-step flex items-center gap-4" data-step="received">
+        <div class="w-10 h-10 rounded-full bg-pizza-yellow flex items-center justify-center">
+         <i data-lucide="check" class="w-5 h-5 text-pizza-dark"></i>
+        </div>
+        <div>
+         <p class="text-white font-medium">Pedido Recebido</p>
+         <p class="text-gray-500 text-sm">Seu pedido foi confirmado</p>
+        </div>
+       </div>
+       <div class="status-step flex items-center gap-4 opacity-50" data-step="preparing">
+        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
+         <i data-lucide="chef-hat" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <div>
+         <p class="text-gray-400 font-medium">Em Preparo</p>
+         <p class="text-gray-500 text-sm">Estamos preparando sua pizza</p>
+        </div>
+       </div>
+       <div class="status-step flex items-center gap-4 opacity-50" data-step="delivery">
+        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
+         <i data-lucide="truck" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <div>
+         <p class="text-gray-400 font-medium">Saiu para Entrega</p>
+         <p class="text-gray-500 text-sm">O entregador está a caminho</p>
+        </div>
+       </div>
+       <div class="status-step flex items-center gap-4 opacity-50" data-step="delivered">
+        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
+         <i data-lucide="home" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <div>
+         <p class="text-gray-400 font-medium">Entregue</p>
+         <p class="text-gray-500 text-sm">Pedido entregue com sucesso</p>
+        </div>
+       </div>
+      </div><!-- Tempo Estimado -->
+      <div class="text-center p-4 bg-pizza-dark rounded-xl">
+       <p class="text-gray-400 mb-1">Tempo estimado de entrega</p>
+       <p id="estimated-time" class="font-display text-2xl text-pizza-yellow">30-40 min</p>
+      </div>
+     </div>
+    </div>
+   </main><!-- ==========================================
+             PAINEL ADMINISTRATIVO
+             ========================================== -->
+   <main id="page-admin" class="page hidden pt-24 pb-8">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="flex items-center justify-between mb-6">
+      <h1 class="font-display text-3xl text-pizza-yellow flex items-center gap-3"><i data-lucide="settings" class="w-8 h-8"></i> Painel Administrativo</h1><button onclick="navigateTo('home')" class="text-gray-400 hover:text-white flex items-center gap-2"> <i data-lucide="arrow-left" class="w-5 h-5"></i> Voltar ao site </button>
+     </div><!-- Tabs Admin -->
+     <div class="flex gap-4 mb-6 border-b border-gray-700">
+      <button id="admin-orders-tab" onclick="switchAdminTab('orders')" class="pb-3 px-4 text-pizza-yellow border-b-2 border-pizza-yellow font-semibold"> <i data-lucide="clipboard-list" class="w-5 h-5 inline mr-2"></i> Pedidos </button> <button id="admin-menu-tab" onclick="switchAdminTab('menu')" class="pb-3 px-4 text-gray-400 border-b-2 border-transparent hover:text-white transition-colors"> <i data-lucide="book-open" class="w-5 h-5 inline mr-2"></i> Cardápio </button>
+     </div><!-- Seção de Pedidos -->
+     <div id="admin-orders-section">
+      <div id="admin-orders-list" class="space-y-4">
+       <!-- Pedidos serão inseridos via JavaScript -->
+      </div>
+      <div id="admin-no-orders" class="text-center py-12 text-gray-500">
+       <i data-lucide="inbox" class="w-16 h-16 mx-auto mb-4 opacity-50"></i>
+       <p>Nenhum pedido registrado ainda</p>
+      </div>
+     </div><!-- Seção de Gerenciamento do Cardápio -->
+     <div id="admin-menu-section" class="hidden">
+      <!-- Formulário para Adicionar Produto -->
+      <div class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6 mb-6">
+       <h2 class="font-display text-xl text-white mb-4 flex items-center gap-2"><i data-lucide="plus-circle" class="w-5 h-5 text-pizza-yellow"></i> Adicionar Novo Produto</h2>
+       <form id="add-product-form" onsubmit="handleAddProduct(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+         <label for="product-name" class="block text-gray-400 mb-2">Nome do Produto *</label> <input type="text" id="product-name" placeholder="Ex: Pizza Calabresa" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="product-category" class="block text-gray-400 mb-2">Categoria *</label> <select id="product-category" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white focus:border-pizza-yellow focus:outline-none" required> <option value="">Selecione...</option> <option value="pizzas">🍕 Pizzas</option> <option value="lanches">🍔 Lanches</option> <option value="bebidas">🥤 Bebidas</option> <option value="combos">🎁 Combos</option> </select>
+        </div>
+        <div class="md:col-span-2">
+         <label for="product-description" class="block text-gray-400 mb-2">Descrição/Ingredientes *</label> <textarea id="product-description" rows="2" placeholder="Ex: Molho, mussarela, calabresa e cebola" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required></textarea>
+        </div>
+        <div>
+         <label for="product-price" class="block text-gray-400 mb-2">Preço (R$) *</label> <input type="number" id="product-price" step="0.01" min="0" placeholder="45.00" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none" required>
+        </div>
+        <div>
+         <label for="product-image" class="block text-gray-400 mb-2">URL da Imagem (opcional)</label> <input type="text" id="product-image" placeholder="Ex: img/pizza-calabresa.jpg" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none">
+         <p class="text-xs text-gray-5 mt-1">Se deixar vazio, usará o emoji abaixo</p>
+        </div>
+        <div>
+         <label for="product-emoji" class="block text-gray-400 mb-2">Emoji para Fallback</label> <input type="text" id="product-emoji" placeholder="🍕" maxlength="2" class="w-full bg-pizza-dark border border-gray-700 rounded-xl p-3 text-white placeholder-gray-500 focus:border-pizza-yellow focus:outline-none">
+        </div>
+        <div class="md:col-span-2">
+         <button type="submit" class="bg-pizza-yellow text-pizza-dark px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors flex items-center gap-2"> <i data-lucide="plus" class="w-5 h-5"></i> Adicionar ao Cardápio </button>
+        </div>
+       </form>
+      </div><!-- Lista de Produtos -->
+      <div class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 p-6">
+       <h2 class="font-display text-xl text-white mb-4">Produtos do Cardápio</h2>
+       <div id="admin-products-list" class="space-y-3">
+        <!-- Produtos serão inseridos via JavaScript -->
+       </div>
+      </div>
+     </div>
+    </div>
+   </main><!-- ==========================================
+             TOAST NOTIFICATIONS
+             ========================================== -->
+   <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div><!-- ==========================================
+             MODAL DE CONFIRMAÇÃO
+             ========================================== -->
+   <div id="confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+    <div class="overlay absolute inset-0" onclick="closeConfirmModal()"></div>
+    <div class="relative bg-pizza-dark border border-pizza-red/20 rounded-2xl p-6 max-w-sm mx-4">
+     <h3 id="confirm-title" class="font-display text-xl text-white mb-2">Confirmar ação</h3>
+     <p id="confirm-message" class="text-gray-400 mb-6">Tem certeza que deseja continuar?</p>
+     <div class="flex gap-3">
+      <button id="close-confirm" onclick="closeConfirmModal()" class="flex-1 px-4 py-2 border border-gray-600 text-gray-400 rounded-full hover:bg-gray-800 transition-colors"> Cancelar </button> <button id="confirm-btn" onclick="confirmAction()" class="flex-1 px-4 py-2 bg-pizza-red text-white rounded-full hover:bg-red-600 transition-colors"> Confirmar </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- ==========================================
+         JAVASCRIPT - LÓGICA DA APLICAÇÃO
+         ========================================== -->
+  <script>
+        // ==========================================
+        // CONFIGURAÇÃO INICIAL E CONSTANTES
+        // ==========================================
+        
+        // Configuração padrão da pizzaria (pode ser alterada via SDK)
+        const defaultConfig = {
+            pizzaria_name: 'GOOD LANCHES',
+            pizzaria_slogan: 'Sabor que conquista!',
+            about_text: 'Desde 2016, a GOOD LANCHES tem sido o ponto de encontro de famílias e amigos que buscam comida boa, rápida e com qualidade.',
+            address_text: 'Rua das Pizzas, 123 - Centro',
+            phone_number: '81986516772',
+            working_hours: 'Segunda a Domingo - 18h às 23h'
+        };
+        
+        // Cardápio inicial da pizzaria
+        // ALTERE AQUI para adicionar/remover produtos do cardápio
+        let menuProducts = [
+            // Pizzas
+            { id: 1, name: 'Pizza Margherita', description: 'Molho de tomate, mussarela fresca e manjericão', price: 45.00, category: 'pizzas', emoji: '🍕', ingredients: ['Molho de tomate', 'Mussarela', 'Manjericão'] },
+            { id: 2, name: 'Pizza Calabresa', description: 'Molho, mussarela, calabresa fatiada e cebola', price: 48.00, category: 'pizzas', emoji: '🍕', ingredients: ['Molho de tomate', 'Mussarela', 'Calabresa', 'Cebola'] },
+            { id: 3, name: 'Pizza Portuguesa', description: 'Molho, mussarela, presunto, ovos, cebola e azeitona', price: 52.00, category: 'pizzas', emoji: '🍕', ingredients: ['Molho de tomate', 'Mussarela', 'Presunto', 'Ovos', 'Cebola', 'Azeitona'] },
+            { id: 4, name: 'Pizza Frango com Catupiry', description: 'Molho, mussarela, frango desfiado e catupiry', price: 55.00, category: 'pizzas', emoji: '🍕', ingredients: ['Molho de tomate', 'Mussarela', 'Frango', 'Catupiry'] },
+            { id: 5, name: 'Pizza Quatro Queijos', description: 'Molho, mussarela, provolone, gorgonzola e parmesão', price: 58.00, category: 'pizzas', emoji: '🧀', ingredients: ['Molho de tomate', 'Mussarela', 'Provolone', 'Gorgonzola', 'Parmesão'] },
+            { id: 6, name: 'Pizza Pepperoni', description: 'Molho, mussarela e pepperoni importado', price: 56.00, category: 'pizzas', emoji: '🍕', ingredients: ['Molho de tomate', 'Mussarela', 'Pepperoni'] },
+            
+            // Lanches
+            { id: 7, name: 'X-Burguer', description: 'Pão, hambúrguer, queijo, alface e tomate', price: 22.00, category: 'lanches', emoji: '🍔', ingredients: ['Pão', 'Hambúrguer', 'Queijo', 'Alface', 'Tomate'] },
+            { id: 8, name: 'X-Bacon', description: 'Pão, hambúrguer, queijo, bacon crocante, alface e tomate', price: 28.00, category: 'lanches', emoji: '🍔', ingredients: ['Pão', 'Hambúrguer', 'Queijo', 'Bacon', 'Alface', 'Tomate'] },
+            { id: 9, name: 'X-Tudo', description: 'Pão, hambúrguer, queijo, bacon, ovo, presunto, alface e tomate', price: 35.00, category: 'lanches', emoji: '🍔', ingredients: ['Pão', 'Hambúrguer', 'Queijo', 'Bacon', 'Ovo', 'Presunto', 'Alface', 'Tomate'] },
+            { id: 10, name: 'Hot Dog Especial', description: 'Pão, salsicha, purê, batata palha, milho e ervilha', price: 18.00, category: 'lanches', emoji: '🌭', ingredients: ['Pão', 'Salsicha', 'Purê', 'Batata palha', 'Milho', 'Ervilha'] },
+            
+            // Bebidas
+            { id: 11, name: 'Refrigerante Lata', description: 'Coca-Cola, Guaraná ou Fanta - 350ml', price: 6.00, category: 'bebidas', emoji: '🥤', ingredients: [] },
+            { id: 12, name: 'Refrigerante 2L', description: 'Coca-Cola, Guaraná ou Fanta', price: 12.00, category: 'bebidas', emoji: '🥤', ingredients: [] },
+            { id: 13, name: 'Suco Natural', description: 'Laranja, limão ou maracujá - 500ml', price: 10.00, category: 'bebidas', emoji: '🍹', ingredients: [] },
+            { id: 14, name: 'Água Mineral', description: 'Com ou sem gás - 500ml', price: 4.00, category: 'bebidas', emoji: '💧', ingredients: [] },
+            
+            // Combos
+            { id: 15, name: 'Combo Família', description: '1 Pizza Grande + 1 Refrigerante 2L + 1 Sobremesa', price: 75.00, category: 'combos', emoji: '🎁', ingredients: [] },
+            { id: 16, name: 'Combo Casal', description: '1 Pizza Média + 2 Refrigerantes Lata', price: 55.00, category: 'combos', emoji: '❤️', ingredients: [] },
+            { id: 17, name: 'Combo Lanche', description: '1 X-Burguer + Batata Frita + Refrigerante', price: 38.00, category: 'combos', emoji: '🍟', ingredients: [] }
+        ];
+        
+        // Ingredientes extras disponíveis
+        const extraIngredients = [
+            { name: 'Queijo Extra', price: 5.00 },
+            { name: 'Bacon', price: 5.00 },
+            { name: 'Calabresa', price: 5.00 },
+            { name: 'Cebola', price: 3.00 },
+            { name: 'Milho', price: 3.00 },
+            { name: 'Azeitona', price: 4.00 },
+            { name: 'Catupiry', price: 6.00 },
+            { name: 'Cheddar', price: 5.00 }
+        ];
+        
+        // Taxa de entrega
+        const DELIVERY_FEE = 5.00;
+        
+        // ==========================================
+        // ESTADO DA APLICAÇÃO
+        // ==========================================
+        
+        let cart = []; // Itens no carrinho
+        let currentUser = null; // Usuário logado
+        let orders = []; // Pedidos do sistema
+        let users = []; // Usuários cadastrados
+        let customProducts = []; // Produtos adicionados pelo admin
+        let currentCustomization = null; // Produto sendo personalizado
+        let confirmCallback = null; // Callback do modal de confirmação
+        let pendingCartAction = null; // Ação pendente após login
+        
+        // ==========================================
+        // INICIALIZAÇÃO DOS SDKs
+        // ==========================================
+        
+        // Inicializa o Element SDK para permitir customização
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: async (config) => {
+                    // Atualiza elementos da página com as novas configurações
+                    const headerName = document.getElementById('header-name');
+                    const heroTitle = document.getElementById('hero-title');
+                    const heroSlogan = document.getElementById('hero-slogan');
+                    const footerName = document.getElementById('footer-name');
+                    const aboutText = document.getElementById('about-text');
+                    const addressText = document.getElementById('address-text');
+                    const workingHours = document.getElementById('working-hours');
+                    const whatsappLink = document.getElementById('whatsapp-link');
+                    
+                    if (headerName) headerName.textContent = config.pizzaria_name || defaultConfig.pizzaria_name;
+                    if (heroTitle) heroTitle.textContent = config.pizzaria_name || defaultConfig.pizzaria_name;
+                    if (heroSlogan) heroSlogan.textContent = config.pizzaria_slogan || defaultConfig.pizzaria_slogan;
+                    if (footerName) footerName.textContent = config.pizzaria_name || defaultConfig.pizzaria_name;
+                    if (aboutText) aboutText.textContent = config.about_text || defaultConfig.about_text;
+                    if (addressText) addressText.textContent = config.address_text || defaultConfig.address_text;
+                    if (workingHours) workingHours.textContent = config.working_hours || defaultConfig.working_hours;
+                    if (whatsappLink) whatsappLink.href = `https://wa.me/${config.phone_number || defaultConfig.phone_number}`;
+                },
+                mapToCapabilities: (config) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ['pizzaria_name', config.pizzaria_name || defaultConfig.pizzaria_name],
+                    ['pizzaria_slogan', config.pizzaria_slogan || defaultConfig.pizzaria_slogan],
+                    ['about_text', config.about_text || defaultConfig.about_text],
+                    ['address_text', config.address_text || defaultConfig.address_text],
+                    ['phone_number', config.phone_number || defaultConfig.phone_number],
+                    ['working_hours', config.working_hours || defaultConfig.working_hours]
+                ])
+            });
+        }
+        
+        // Handler para o Data SDK
+        const dataHandler = {
+            onDataChanged(data) {
+                // Separa os dados por tipo
+                users = data.filter(d => d.type === 'user');
+                orders = data.filter(d => d.type === 'order');
+                customProducts = data.filter(d => d.type === 'product');
+                
+                // Atualiza as interfaces
+                renderAdminOrders();
+                renderAdminProducts();
+                updateTrackingPage();
+            }
+        };
+        
+        // Inicializa o Data SDK
+        async function initDataSdk() {
+            if (window.dataSdk) {
+                const result = await window.dataSdk.init(dataHandler);
+                if (!result.isOk) {
+                    console.error('Erro ao inicializar Data SDK');
+                }
+            }
+        }
+        
+        // ==========================================
+        // NAVEGAÇÃO ENTRE PÁGINAS
+        // ==========================================
+        
+        // Navega para uma página específica
+        function navigateTo(page) {
+            // Esconde todas as páginas
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            
+            // Mostra a página solicitada
+            const targetPage = document.getElementById(`page-${page}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+            
+            // Fecha menu mobile se aberto
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll para o topo
+            document.getElementById('app').scrollTo(0, 0);
+            
+            // Ações específicas por página
+            if (page === 'menu') {
+                renderMenu();
+            } else if (page === 'cart') {
+                renderCart();
+            } else if (page === 'admin') {
+                renderAdminOrders();
+                renderAdminProducts();
+            }
+            
+            // Atualiza ícones Lucide
+            lucide.createIcons();
+        }
+        
+        // Scroll suave para uma seção
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Toggle menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // ==========================================
+        // SISTEMA DE AUTENTICAÇÃO
+        // ==========================================
+        
+        // Alterna entre abas de login/cadastro
+        function switchAuthTab(tab) {
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            
+            if (tab === 'login') {
+                loginTab.classList.add('text-pizza-yellow', 'border-pizza-yellow');
+                loginTab.classList.remove('text-gray-400', 'border-transparent');
+                registerTab.classList.add('text-gray-400', 'border-transparent');
+                registerTab.classList.remove('text-pizza-yellow', 'border-pizza-yellow');
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+            } else {
+                registerTab.classList.add('text-pizza-yellow', 'border-pizza-yellow');
+                registerTab.classList.remove('text-gray-400', 'border-transparent');
+                loginTab.classList.add('text-gray-400', 'border-transparent');
+                loginTab.classList.remove('text-pizza-yellow', 'border-pizza-yellow');
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            }
+        }
+        
+        // Processa login
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorDiv = document.getElementById('login-error');
+            
+            // Busca usuário
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                updateUserUI();
+                showToast('Login realizado com sucesso!', 'success');
+                
+                // Executa ação pendente se houver
+                if (pendingCartAction) {
+                    pendingCartAction();
+                    pendingCartAction = null;
+                } else {
+                    navigateTo('home');
+                }
+            } else {
+                // Verifica se é admin
+                if (email === 'admin@pizzaria.com' && password === 'admin123') {
+                    currentUser = { name: 'Administrador', email: email, isAdmin: true };
+                    updateUserUI();
+                    showToast('Bem-vindo, Administrador!', 'success');
+                    navigateTo('admin');
+                } else {
+                    errorDiv.textContent = 'Email ou senha incorretos. Tente novamente.';
+                    errorDiv.classList.remove('hidden');
+                }
+            }
+        }
+        
+        // Processa cadastro
+        async function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('register-name').value;
+            const phone = document.getElementById('register-phone').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const address = document.getElementById('register-address').value;
+            const errorDiv = document.getElementById('register-error');
+            
+            // Verifica se email já existe
+            if (users.find(u => u.email === email)) {
+                errorDiv.textContent = 'Este email já está cadastrado. Faça login.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            
+            // Verifica limite de registros
+            if (users.length >= 999) {
+                errorDiv.textContent = 'Limite de cadastros atingido.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            
+            // Cria novo usuário
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create({
+                    type: 'user',
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    password: password,
+                    address: address,
+                    createdAt: new Date().toISOString()
+                });
+                
+                if (result.isOk) {
+                    currentUser = { name, phone, email, address };
+                    updateUserUI();
+                    showToast('Cadastro realizado com sucesso!', 'success');
+                    
+                    if (pendingCartAction) {
+                        pendingCartAction();
+                        pendingCartAction = null;
+                    } else {
+                        navigateTo('home');
+                    }
+                } else {
+                    errorDiv.textContent = 'Erro ao cadastrar. Tente novamente.';
+                    errorDiv.classList.remove('hidden');
+                }
+            } else {
+                // Fallback sem SDK
+                currentUser = { name, phone, email, address };
+                users.push(currentUser);
+                updateUserUI();
+                showToast('Cadastro realizado com sucesso!', 'success');
+                navigateTo('home');
+            }
+        }
+        
+        // Atualiza UI do usuário logado
+        function updateUserUI() {
+            const userBtnText = document.getElementById('user-btn-text');
+            
+            if (currentUser) {
+                userBtnText.textContent = currentUser.name.split(' ')[0];
+                
+                // Atualiza endereço no carrinho
+                const deliveryAddress = document.getElementById('delivery-address');
+                if (deliveryAddress && currentUser.address) {
+                    deliveryAddress.textContent = currentUser.address;
+                }
+            } else {
+                userBtnText.textContent = 'Entrar';
+            }
+        }
+        
+        // Ação do botão de usuário
+        function handleUserClick() {
+            if (currentUser) {
+                if (currentUser.isAdmin) {
+                    navigateTo('admin');
+                } else {
+                    // Mostra opções do usuário
+                    showConfirm('Sair da conta?', `Logado como ${currentUser.name}`, () => {
+                        currentUser = null;
+                        updateUserUI();
+                        showToast('Você saiu da conta', 'info');
+                    });
+                }
+            } else {
+                navigateTo('login');
+            }
+        }
+        
+        // ==========================================
+        // RENDERIZAÇÃO DO CARDÁPIO
+        // ==========================================
+        
+        // Renderiza a lista de produtos do cardápio
+        function renderMenu(filter = 'all') {
+            const grid = document.getElementById('menu-grid');
+            
+            // Combina produtos padrão com produtos customizados
+            const allProducts = [...menuProducts];
+            customProducts.forEach(cp => {
+                allProducts.push({
+                    id: cp.__backendId,
+                    name: cp.productName,
+                    description: cp.productDescription,
+                    price: cp.productPrice,
+                    category: cp.productCategory,
+                    emoji: cp.productImage || '🍕',
+                    ingredients: cp.productDescription.split(',').map(i => i.trim())
+                });
+            });
+            
+            // Filtra produtos por categoria
+            const filteredProducts = filter === 'all' 
+                ? allProducts 
+                : allProducts.filter(p => p.category === filter);
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <!-- Item do Cardápio -->
+                <div class="bg-pizza-dark/50 rounded-2xl border border-pizza-red/20 overflow-hidden card-hover" data-category="${product.category}">
+                    <!-- Imagem do Produto -->
+                    <div class="h-40 bg-gradient-to-br from-pizza-red/20 to-pizza-orange/20 flex items-center justify-center">
+                        <span class="text-6xl">${product.emoji}</span>
+                    </div>
+                    
+                    <!-- Informações do Produto -->
+                    <div class="p-4">
+                        <span class="text-xs text-pizza-yellow uppercase tracking-wide">${getCategoryName(product.category)}</span>
+                        <h3 class="font-display text-lg text-white mt-1">${product.name}</h3>
+                        <p class="text-gray-400 text-sm mt-1 line-clamp-2">${product.description}</p>
+                        
+                        <div class="flex items-center justify-between mt-4">
+                            <p class="text-pizza-yellow font-bold text-xl">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                            
+                            <!-- Botão Adicionar ao Carrinho -->
+                            <button onclick="openCustomization(${typeof product.id === 'string' ? `'${product.id}'` : product.id})" class="bg-pizza-yellow text-pizza-dark p-2 rounded-full hover:bg-yellow-400 transition-colors">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+        
+        // Filtra produtos por categoria
+        function filterCategory(category) {
+            // Atualiza tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.add('tab-active');
+                } else {
+                    tab.classList.remove('tab-active');
+                }
+            });
+            
+            renderMenu(category);
+        }
+        
+        // Retorna nome legível da categoria
+        function getCategoryName(category) {
+            const names = {
+                'pizzas': 'Pizza',
+                'lanches': 'Lanche',
+                'bebidas': 'Bebida',
+                'combos': 'Combo'
+            };
+            return names[category] || category;
+        }
+        
+        // ==========================================
+        // PERSONALIZAÇÃO DO PEDIDO
+        // ==========================================
+        
+        // Abre página de personalização
+        function openCustomization(productId) {
+            // Busca produto
+            let product = menuProducts.find(p => p.id === productId);
+            
+            // Se não encontrou, busca nos produtos customizados
+            if (!product) {
+                const customProduct = customProducts.find(p => p.__backendId === productId);
+                if (customProduct) {
+                    product = {
+                        id: customProduct.__backendId,
+                        name: customProduct.productName,
+                        description: customProduct.productDescription,
+                        price: customProduct.productPrice,
+                        category: customProduct.productCategory,
+                        emoji: customProduct.productImage || '🍕',
+                        ingredients: customProduct.productDescription.split(',').map(i => i.trim())
+                    };
+                }
+            }
+            
+            if (!product) return;
+            
+            // Configura personalização
+            currentCustomization = {
+                product: product,
+                quantity: 1,
+                removedIngredients: [],
+                addedIngredients: [],
+                notes: ''
+            };
+            
+            // Atualiza UI
+            document.getElementById('customize-name').textContent = product.name;
+            document.getElementById('customize-description').textContent = product.description;
+            document.getElementById('customize-price').textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
+            document.getElementById('customize-image').innerHTML = `<span class="text-4xl">${product.emoji}</span>`;
+            document.getElementById('customize-quantity').textContent = '1';
+            document.getElementById('customize-notes').value = '';
+            
+            // Renderiza ingredientes padrão
+            renderDefaultIngredients();
+            renderExtraIngredients();
+            updateCustomizeTotal();
+            
+            navigateTo('customize');
+        }
+        
+        // Renderiza ingredientes padrão (remover)
+        function renderDefaultIngredients() {
+            const container = document.getElementById('default-ingredients');
+            const ingredients = currentCustomization.product.ingredients || [];
+            
+            if (ingredients.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">Não há ingredientes para remover</p>';
+                return;
+            }
+            
+            container.innerHTML = ingredients.map((ing, index) => {
+                const isRemoved = currentCustomization.removedIngredients.includes(ing);
+                return `
+                    <button onclick="toggleDefaultIngredient('${ing}')" 
+                        class="px-4 py-2 rounded-full border transition-all ${isRemoved 
+                            ? 'border-red-500 bg-red-500/20 text-red-400 line-through' 
+                            : 'border-gray-600 text-white hover:border-pizza-yellow'}">
+                        ${isRemoved ? '✕' : ''} ${ing}
+                    </button>
+                `;
+            }).join('');
+        }
+        
+        // Toggle ingrediente padrão (remover/adicionar de volta)
+        function toggleDefaultIngredient(ingredient) {
+            const index = currentCustomization.removedIngredients.indexOf(ingredient);
+            if (index > -1) {
+                currentCustomization.removedIngredients.splice(index, 1);
+            } else {
+                currentCustomization.removedIngredients.push(ingredient);
+            }
+            renderDefaultIngredients();
+        }
+        
+        // Renderiza ingredientes extras (adicionar)
+        function renderExtraIngredients() {
+            const container = document.getElementById('extra-ingredients');
+            
+            container.innerHTML = extraIngredients.map(ing => {
+                const isAdded = currentCustomization.addedIngredients.find(a => a.name === ing.name);
+                return `
+                    <button onclick="toggleExtraIngredient('${ing.name}', ${ing.price})" 
+                        class="px-4 py-2 rounded-full border transition-all ${isAdded 
+                            ? 'border-pizza-yellow bg-pizza-yellow/20 text-pizza-yellow' 
+                            : 'border-gray-600 text-white hover:border-pizza-yellow'}">
+                        ${isAdded ? '✓' : '+'} ${ing.name} (+R$ ${ing.price.toFixed(2).replace('.', ',')})
+                    </button>
+                `;
+            }).join('');
+        }
+        
+        // Toggle ingrediente extra
+        function toggleExtraIngredient(name, price) {
+            const index = currentCustomization.addedIngredients.findIndex(a => a.name === name);
+            if (index > -1) {
+                currentCustomization.addedIngredients.splice(index, 1);
+            } else {
+                currentCustomization.addedIngredients.push({ name, price });
+            }
+            renderExtraIngredients();
+            updateCustomizeTotal();
+        }
+        
+        // Atualiza quantidade na personalização
+        function updateCustomizeQuantity(delta) {
+            const newQty = currentCustomization.quantity + delta;
+            if (newQty >= 1 && newQty <= 10) {
+                currentCustomization.quantity = newQty;
+                document.getElementById('customize-quantity').textContent = newQty;
+                updateCustomizeTotal();
+            }
+        }
+        
+        // Atualiza total na personalização
+        function updateCustomizeTotal() {
+            const basePrice = currentCustomization.product.price;
+            const extrasTotal = currentCustomization.addedIngredients.reduce((sum, ing) => sum + ing.price, 0);
+            const total = (basePrice + extrasTotal) * currentCustomization.quantity;
+            
+            document.getElementById('customize-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+        
+        // Adiciona item personalizado ao carrinho
+        function addCustomizedToCart() {
+            // Verifica se usuário está logado
+            if (!currentUser) {
+                pendingCartAction = addCustomizedToCart;
+                showToast('Faça login para adicionar ao carrinho', 'warning');
+                navigateTo('login');
+                return;
+            }
+            
+            const notes = document.getElementById('customize-notes').value;
+            currentCustomization.notes = notes;
+            
+            // Cria item do carrinho
+            const cartItem = {
+                id: Date.now(),
+                product: currentCustomization.product,
+                quantity: currentCustomization.quantity,
+                removedIngredients: [...currentCustomization.removedIngredients],
+                addedIngredients: [...currentCustomization.addedIngredients],
+                notes: notes,
+                unitPrice: currentCustomization.product.price + currentCustomization.addedIngredients.reduce((sum, ing) => sum + ing.price, 0)
+            };
+            
+            cart.push(cartItem);
+            updateCartCount();
+            showToast(`${currentCustomization.product.name} adicionado ao carrinho!`, 'success');
+            navigateTo('menu');
+        }
+        
+        // ==========================================
+        // CARRINHO DE COMPRAS
+        // ==========================================
+        
+        // Atualiza contador do carrinho
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+            document.getElementById('cart-count-mobile').textContent = count;
+        }
+        
+        // Renderiza o carrinho
+        function renderCart() {
+            const itemsContainer = document.getElementById('cart-items');
+            const emptyContainer = document.getElementById('cart-empty');
+            const summaryContainer = document.getElementById('cart-summary');
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '';
+                emptyContainer.classList.remove('hidden');
+                summaryContainer.classList.add('hidden');
+                return;
+            }
+            
+            emptyContainer.classList.add('hidden');
+            summaryContainer.classList.remove('hidden');
+            
+            // Renderiza itens
+            itemsContainer.innerHTML = cart.map(item => `
+                <!-- Item do Carrinho -->
+                <div class="bg-pizza-dark/50 rounded-xl border border-pizza-red/20 p-4 flex gap-4">
+                    <!-- Imagem -->
+                    <div class="w-20 h-20 bg-pizza-red/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span class="text-3xl">${item.product.emoji}</span>
+                    </div>
+                    
+                    <!-- Informações -->
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-white">${item.product.name}</h3>
+                        ${item.removedIngredients.length > 0 ? `<p class="text-xs text-red-400">Sem: ${item.removedIngredients.join(', ')}</p>` : ''}
+                        ${item.addedIngredients.length > 0 ? `<p class="text-xs text-green-400">Com: ${item.addedIngredients.map(i => i.name).join(', ')}</p>` : ''}
+                        ${item.notes ? `<p class="text-xs text-gray-500">Obs: ${item.notes}</p>` : ''}
+                        <p class="text-pizza-yellow font-bold mt-1">R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}</p>
+                    </div>
+                    
+                    <!-- Controle de Quantidade -->
+                    <div class="flex flex-col items-center justify-between">
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-500 hover:text-red-500 transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateCartQuantity(${item.id}, -1)" class="w-8 h-8 bg-pizza-dark border border-gray-700 rounded-full flex items-center justify-center text-white hover:border-pizza-yellow transition-colors">
+                                <i data-lucide="minus" class="w-3 h-3"></i>
+                            </button>
+                            <span class="text-white font-bold w-6 text-center">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)" class="w-8 h-8 bg-pizza-dark border border-gray-700 rounded-full flex items-center justify-center text-white hover:border-pizza-yellow transition-colors">
+                                <i data-lucide="plus" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Atualiza totais
+            const subtotal = cart.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+            const total = subtotal + DELIVERY_FEE;
+            
+            document.getElementById('cart-subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('cart-delivery').textContent = `R$ ${DELIVERY_FEE.toFixed(2).replace('.', ',')}`;
+            document.getElementById('cart-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            
+            // Atualiza endereço
+            if (currentUser && currentUser.address) {
+                document.getElementById('delivery-address').textContent = currentUser.address;
+            }
+            
+            lucide.createIcons();
+        }
+        
+        // Atualiza quantidade no carrinho
+        function updateCartQuantity(itemId, delta) {
+            const item = cart.find(i => i.id === itemId);
+            if (item) {
+                const newQty = item.quantity + delta;
+                if (newQty <= 0) {
+                    removeFromCart(itemId);
+                } else if (newQty <= 10) {
+                    item.quantity = newQty;
+                    renderCart();
+                    updateCartCount();
+                }
+            }
+        }
+        
+        // Remove item do carrinho
+        function removeFromCart(itemId) {
+            cart = cart.filter(i => i.id !== itemId);
+            renderCart();
+            updateCartCount();
+            showToast('Item removido do carrinho', 'info');
+        }
+        
+        // Finaliza o pedido
+        async function finishOrder() {
+            if (!currentUser) {
+                pendingCartAction = finishOrder;
+                showToast('Faça login para finalizar o pedido', 'warning');
+                navigateTo('login');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                showToast('Seu carrinho está vazio', 'warning');
+                return;
+            }
+            
+            // Verifica limite de pedidos
+            if (orders.length >= 999) {
+                showToast('Limite de pedidos atingido', 'error');
+                return;
+            }
+            
+            // Calcula total
+            const subtotal = cart.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+            const total = subtotal + DELIVERY_FEE;
+            
+            // Cria pedido
+            const orderNumber = String(orders.length + 1).padStart(4, '0');
+            const orderItems = cart.map(item => ({
+                name: item.product.name,
+                quantity: item.quantity,
+                price: item.unitPrice,
+                notes: item.notes
+            }));
+            
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create({
+                    type: 'order',
+                    userId: currentUser.email,
+                    name: currentUser.name,
+                    phone: currentUser.phone || '',
+                    address: currentUser.address || '',
+                    items: JSON.stringify(orderItems),
+                    total: total,
+                    status: 'received',
+                    createdAt: new Date().toISOString()
+                });
+                
+                if (result.isOk) {
+                    cart = [];
+                    updateCartCount();
+                    showToast(`Pedido #${orderNumber} realizado com sucesso!`, 'success');
+                    navigateTo('tracking');
+                } else {
+                    showToast('Erro ao criar pedido. Tente novamente.', 'error');
+                }
+            } else {
+                // Fallback sem SDK
+                orders.push({
+                    number: orderNumber,
+                    items: orderItems,
+                    total: total,
+                    status: 'received',
+                    createdAt: new Date()
+                });
+                cart = [];
+                updateCartCount();
+                showToast(`Pedido #${orderNumber} realizado com sucesso!`, 'success');
+                updateTrackingPage();
+                navigateTo('tracking');
+            }
+        }
+        
+        // ==========================================
+        // ACOMPANHAMENTO DO PEDIDO
+        // ==========================================
+        
+        // Atualiza página de acompanhamento
+        function updateTrackingPage() {
+            const noOrders = document.getElementById('no-orders');
+            const activeOrder = document.getElementById('active-order');
+            
+            // Busca último pedido do usuário
+            let userOrder = null;
+            if (currentUser) {
+                userOrder = orders.filter(o => o.userId === currentUser.email).pop();
+            }
+            
+            if (!userOrder) {
+                noOrders.classList.remove('hidden');
+                activeOrder.classList.add('hidden');
+                return;
+            }
+            
+            noOrders.classList.add('hidden');
+            activeOrder.classList.remove('hidden');
+            
+            // Atualiza número do pedido
+            const orderDate = new Date(userOrder.createdAt);
+            const orderNum = String(orders.indexOf(userOrder) + 1).padStart(4, '0');
+            document.getElementById('order-number').textContent = `#${orderNum}`;
+            
+            // Atualiza status e barra de progresso
+            const statusMap = {
+                'received': { progress: 25, step: 0 },
+                'preparing': { progress: 50, step: 1 },
+                'delivery': { progress: 75, step: 2 },
+                'delivered': { progress: 100, step: 3 }
+            };
+            
+            const status = statusMap[userOrder.status] || statusMap['received'];
+            document.getElementById('progress-bar').style.width = `${status.progress}%`;
+            
+            // Atualiza visual dos steps
+            const steps = document.querySelectorAll('.status-step');
+            steps.forEach((step, index) => {
+                const stepIcon = step.querySelector('div:first-child');
+                const stepText = step.querySelector('p:first-child');
+                
+                if (index <= status.step) {
+                    step.classList.remove('opacity-50');
+                    stepIcon.classList.remove('bg-gray-700');
+                    stepIcon.classList.add('bg-pizza-yellow');
+                    stepIcon.innerHTML = '<i data-lucide="check" class="w-5 h-5 text-pizza-dark"></i>';
+                    stepText.classList.remove('text-gray-400');
+                    stepText.classList.add('text-white');
+                } else {
+                    step.classList.add('opacity-50');
+                }
+            });
+            
+            lucide.createIcons();
+        }
+        
+        // ==========================================
+        // PAINEL ADMINISTRATIVO
+        // ==========================================
+        
+        // Alterna tabs do admin
+        function switchAdminTab(tab) {
+            const ordersTab = document.getElementById('admin-orders-tab');
+            const menuTab = document.getElementById('admin-menu-tab');
+            const ordersSection = document.getElementById('admin-orders-section');
+            const menuSection = document.getElementById('admin-menu-section');
+            
+            if (tab === 'orders') {
+                ordersTab.classList.add('text-pizza-yellow', 'border-pizza-yellow');
+                ordersTab.classList.remove('text-gray-400', 'border-transparent');
+                menuTab.classList.add('text-gray-400', 'border-transparent');
+                menuTab.classList.remove('text-pizza-yellow', 'border-pizza-yellow');
+                ordersSection.classList.remove('hidden');
+                menuSection.classList.add('hidden');
+            } else {
+                menuTab.classList.add('text-pizza-yellow', 'border-pizza-yellow');
+                menuTab.classList.remove('text-gray-400', 'border-transparent');
+                ordersTab.classList.add('text-gray-400', 'border-transparent');
+                ordersTab.classList.remove('text-pizza-yellow', 'border-pizza-yellow');
+                menuSection.classList.remove('hidden');
+                ordersSection.classList.add('hidden');
+            }
+        }
+        
+        // Renderiza lista de pedidos no admin
+        function renderAdminOrders() {
+            const container = document.getElementById('admin-orders-list');
+            const noOrders = document.getElementById('admin-no-orders');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '';
+                noOrders.classList.remove('hidden');
+                return;
+            }
+            
+            noOrders.classList.add('hidden');
+            
+            container.innerHTML = orders.map((order, index) => {
+                const orderNum = String(index + 1).padStart(4, '0');
+                const items = JSON.parse(order.items || '[]');
+                const statusColors = {
+                    'received': 'bg-blue-500',
+                    'preparing': 'bg-yellow-500',
+                    'delivery': 'bg-purple-500',
+                    'delivered': 'bg-green-500'
+                };
+                const statusNames = {
+                    'received': 'Recebido',
+                    'preparing': 'Em Preparo',
+                    'delivery': 'Em Entrega',
+                    'delivered': 'Entregue'
+                };
+                
+                return `
+                    <!-- Pedido Admin -->
+                    <div class="bg-pizza-dark/50 rounded-xl border border-pizza-red/20 p-4">
+                        <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                            <div>
+                                <span class="text-pizza-yellow font-display text-lg">#${orderNum}</span>
+                                <p class="text-white font-medium">${order.name}</p>
+                                <p class="text-gray-500 text-sm">${order.phone || 'Sem telefone'}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium ${statusColors[order.status]} text-white">
+                                    ${statusNames[order.status]}
+                                </span>
+                                <p class="text-pizza-yellow font-bold mt-2">R$ ${order.total.toFixed(2).replace('.', ',')}</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Itens do Pedido -->
+                        <div class="bg-pizza-dark rounded-lg p-3 mb-4">
+                            <p class="text-gray-400 text-sm mb-2">Itens:</p>
+                            ${items.map(item => `
+                                <p class="text-white text-sm">${item.quantity}x ${item.name}</p>
+                            `).join('')}
+                        </div>
+                        
+                        <!-- Endereço -->
+                        <div class="text-gray-400 text-sm mb-4">
+                            <i data-lucide="map-pin" class="w-4 h-4 inline"></i>
+                            ${order.address || 'Endereço não informado'}
+                        </div>
+                        
+                        <!-- Controles de Status -->
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="updateOrderStatus('${order.__backendId}', 'received')" class="px-3 py-1 text-xs rounded-full border ${order.status === 'received' ? 'border-blue-500 text-blue-500' : 'border-gray-600 text-gray-400 hover:border-white hover:text-white'}">
+                                Recebido
+                            </button>
+                            <button onclick="updateOrderStatus('${order.__backendId}', 'preparing')" class="px-3 py-1 text-xs rounded-full border ${order.status === 'preparing' ? 'border-yellow-500 text-yellow-500' : 'border-gray-600 text-gray-400 hover:border-white hover:text-white'}">
+                                Em Preparo
+                            </button>
+                            <button onclick="updateOrderStatus('${order.__backendId}', 'delivery')" class="px-3 py-1 text-xs rounded-full border ${order.status === 'delivery' ? 'border-purple-500 text-purple-500' : 'border-gray-600 text-gray-400 hover:border-white hover:text-white'}">
+                                Em Entrega
+                            </button>
+                            <button onclick="updateOrderStatus('${order.__backendId}', 'delivered')" class="px-3 py-1 text-xs rounded-full border ${order.status === 'delivered' ? 'border-green-500 text-green-500' : 'border-gray-600 text-gray-400 hover:border-white hover:text-white'}">
+                                Entregue
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+        
+        // Atualiza status do pedido
+        async function updateOrderStatus(orderId, newStatus) {
+            const order = orders.find(o => o.__backendId === orderId);
+            if (order && window.dataSdk) {
+                order.status = newStatus;
+                const result = await window.dataSdk.update(order);
+                if (result.isOk) {
+                    showToast('Status atualizado!', 'success');
+                    renderAdminOrders();
+                }
+            }
+        }
+        
+        // Renderiza lista de produtos no admin
+        function renderAdminProducts() {
+            const container = document.getElementById('admin-products-list');
+            
+            // Combina produtos padrão com customizados
+            const allProducts = [
+                ...menuProducts.map(p => ({ ...p, isDefault: true })),
+                ...customProducts.map(p => ({
+                    id: p.__backendId,
+                    name: p.productName,
+                    description: p.productDescription,
+                    price: p.productPrice,
+                    category: p.productCategory,
+                    emoji: p.productImage || '🍕',
+                    isDefault: false,
+                    __backendId: p.__backendId
+                }))
+            ];
+            
+            container.innerHTML = allProducts.map(product => `
+                <!-- Produto Admin -->
+                <div class="flex items-center justify-between p-3 bg-pizza-dark rounded-xl ${product.isDefault ? 'opacity-70' : ''}">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">${product.emoji}</span>
+                        <div>
+                            <p class="text-white font-medium">${product.name}</p>
+                            <p class="text-gray-500 text-sm">${getCategoryName(product.category)} - R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                    </div>
+                    ${product.isDefault ? `
+                        <span class="text-gray-500 text-xs">Padrão</span>
+                    ` : `
+                        <button onclick="deleteProduct('${product.__backendId}')" class="text-gray-500 hover:text-red-500 transition-colors p-2">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    `}
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+        
+        // Adiciona novo produto
+        async function handleAddProduct(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('product-name').value;
+            const category = document.getElementById('product-category').value;
+            const description = document.getElementById('product-description').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            const emoji = document.getElementById('product-image').value || '🍕';
+            
+            if (customProducts.length >= 100) {
+                showToast('Limite de produtos customizados atingido', 'warning');
+                return;
+            }
+            
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create({
+                    type: 'product',
+                    productName: name,
+                    productCategory: category,
+                    productDescription: description,
+                    productPrice: price,
+                    productImage: emoji,
+                    createdAt: new Date().toISOString()
+                });
+                
+                if (result.isOk) {
+                    showToast('Produto adicionado com sucesso!', 'success');
+                    document.getElementById('add-product-form').reset();
+                    renderMenu();
+                } else {
+                    showToast('Erro ao adicionar produto', 'error');
+                }
+            }
+        }
+        
+        // Remove produto customizado
+        async function deleteProduct(productId) {
+            const product = customProducts.find(p => p.__backendId === productId);
+            if (product && window.dataSdk) {
+                showConfirm('Remover produto?', `Deseja remover "${product.productName}" do cardápio?`, async () => {
+                    const result = await window.dataSdk.delete(product);
+                    if (result.isOk) {
+                        showToast('Produto removido!', 'success');
+                        renderMenu();
+                    }
+                });
+            }
+        }
+        
+        // ==========================================
+        // SISTEMA DE NOTIFICAÇÕES (TOAST)
+        // ==========================================
+        
+        // Mostra toast notification
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const colors = {
+                'success': 'bg-green-600',
+                'error': 'bg-red-600',
+                'warning': 'bg-yellow-600',
+                'info': 'bg-blue-600'
+            };
+            const icons = {
+                'success': 'check-circle',
+                'error': 'x-circle',
+                'warning': 'alert-triangle',
+                'info': 'info'
+            };
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${colors[type]} text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 max-w-sm`;
+            toast.innerHTML = `
+                <i data-lucide="${icons[type]}" class="w-5 h-5 flex-shrink-0"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            lucide.createIcons();
+            
+            // Remove após 3 segundos
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // ==========================================
+        // MODAL DE CONFIRMAÇÃO
+        // ==========================================
+        
+        // Mostra modal de confirmação
+        function showConfirm(title, message, callback) {
+            document.getElementById('confirm-title').textContent = title;
+            document.getElementById('confirm-message').textContent = message;
+            document.getElementById('confirm-modal').classList.remove('hidden');
+            confirmCallback = callback;
+        }
+        
+        // Fecha modal
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            confirmCallback = null;
+        }
+        
+        // Executa ação confirmada
+        function confirmAction() {
+            if (confirmCallback) {
+                confirmCallback();
+            }
+            closeConfirmModal();
+        }
+        
+        // ==========================================
+        // INICIALIZAÇÃO DA APLICAÇÃO
+        // ==========================================
+        
+        // Inicializa quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Inicializa Data SDK
+            await initDataSdk();
+            
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Renderiza cardápio inicial
+            renderMenu();
+            
+            // Atualiza contador do carrinho
+            updateCartCount();
+            
+            console.log('� GOODS LANCHES - Site carregado com sucesso!');
+        });
+    </script>
+  <!-- Script da Aplicação -->
+  <script src="script.js"></script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dad0884615816e9',t:'MTc3MzI1ODA1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

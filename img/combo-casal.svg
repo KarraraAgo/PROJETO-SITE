@@ -1,0 +1,32 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Coração grande (destaque) -->
+  <path d="M 200 200 C 200 180 190 170 180 170 C 165 170 160 180 160 190 C 160 180 155 165 140 165 C 120 165 110 180 110 200 C 110 230 150 280 160 290 L 200 330 L 240 290 C 250 280 290 230 290 200 C 290 180 280 165 260 165 C 245 165 240 180 240 190 C 240 180 235 170 220 170 C 210 170 200 180 200 200 Z" fill="#FF1493"/>
+  <!-- Fatia de pizza 1 -->
+  <path d="M 80 120 L 100 80 L 140 110 Z" fill="#D2691E" stroke="#8B4513" stroke-width="1"/>
+  <circle cx="110" cy="100" r="5" fill="#FFD700"/>
+  <circle cx="115" cy="105" r="4" fill="#DC143C"/>
+  <!-- Fatia de pizza 2 -->
+  <path d="M 320 120 L 300 80 L 260 110 Z" fill="#D2691E" stroke="#8B4513" stroke-width="1"/>
+  <circle cx="290" cy="100" r="5" fill="#FFD700"/>
+  <circle cx="285" cy="105" r="4" fill="#DC143C"/>
+  <!-- Bebida 1 (esquerda) -->
+  <rect x="40" y="200" width="40" height="80" fill="#FF8C00" stroke="#FF6F00" stroke-width="2" rx="3"/>
+  <ellipse cx="60" cy="200" rx="20" ry="6" fill="#D68000"/>
+  <!-- Liquido -->
+  <rect x="45" y="215" width="30" height="60" fill="#FF6347"/>
+  <!-- Canudo -->
+  <rect x="52" y="140" width="4" height="70" fill="#FF69B4"/>
+  <!-- Bebida 2 (direita) -->
+  <rect x="320" y="200" width="40" height="80" fill="#FF8C00" stroke="#FF6F00" stroke-width="2" rx="3"/>
+  <ellipse cx="340" cy="200" rx="20" ry="6" fill="#D68000"/>
+  <!-- Liquido -->
+  <rect x="325" y="215" width="30" height="60" fill="#FF6347"/>
+  <!-- Canudo -->
+  <rect x="332" y="140" width="4" height="70" fill="#FF69B4"/>
+  <!-- Estrela destaque -->
+  <polygon points="200,50 210,75 235,75 215,90 225,115 200,100 175,115 185,90 165,75 190,75" fill="#FFD700"/>
+  <!-- Caixa/contêiner central -->
+  <rect x="140" y="280" width="120" height="60" fill="#FFD700" stroke="#FFC700" stroke-width="2" rx="4"/>
+  <text x="200" y="308" text-anchor="middle" font-size="14" font-family="Arial" font-weight="bold" fill="#FF6F00">COMBO</text>
+  <text x="200" y="330" text-anchor="middle" font-size="12" font-family="Arial" fill="#FF1493">❤ CASAL ❤</text>
+</svg>

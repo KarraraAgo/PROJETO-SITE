@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bun superior -->
+  <ellipse cx="200" cy="80" rx="120" ry="50" fill="#D2691E"/>
+  <rect x="80" y="80" width="240" height="40" fill="#D2691E"/>
+  <!-- Sementes do pão -->
+  <circle cx="120" cy="60" r="6" fill="#8B4513"/>
+  <circle cx="160" cy="55" r="5" fill="#8B4513"/>
+  <circle cx="200" cy="50" r="6" fill="#8B4513"/>
+  <circle cx="240" cy="55" r="5" fill="#8B4513"/>
+  <circle cx="280" cy="60" r="6" fill="#8B4513"/>
+  <!-- Alface -->
+  <ellipse cx="200" cy="125" rx="110" ry="20" fill="#228B22"/>
+  <!-- Tomate -->
+  <rect x="100" y="155" width="200" height="20" fill="#DC143C" rx="5"/>
+  <!-- Queijo -->
+  <rect x="100" y="185" width="200" height="18" fill="#FFD700" rx="3"/>
+  <!-- Hambúrguer -->
+  <rect x="95" y="213" width="210" height="35" fill="#8B4513" rx="5"/>
+  <!-- Bun inferior -->
+  <ellipse cx="200" cy="300" rx="120" ry="50" fill="#D2691E"/>
+  <rect x="80" y="260" width="240" height="40" fill="#D2691E"/>
+  <text x="200" y="370" text-anchor="middle" font-size="18" font-family="Arial" fill="#333">X-Burger</text>
+</svg>

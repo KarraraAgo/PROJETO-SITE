@@ -1,0 +1,43 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#B3E5FC;stop-opacity:0.5" />
+      <stop offset="50%" style="stop-color:#81D4FA;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#B3E5FC;stop-opacity:0.5" />
+    </linearGradient>
+    <linearGradient id="waterLiquid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4DD0E1;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#26C6DA;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+  <!-- Pescoço -->
+  <rect x="175" y="50" width="50" height="20" fill="#E8E8E8" rx="2"/>
+  <!-- Tampa/rosca -->
+  <ellipse cx="200" cy="50" rx="28" ry="9" fill="#BDBDBD"/>
+  <rect x="187" y="46" width="26" height="6" fill="#9E9E9E"/>
+  <!-- Garrafa superior -->
+  <path d="M 160 70 L 140 110 L 135 260 Q 135 300 170 300 L 230 300 Q 265 300 265 260 L 260 110 L 240 70 Z" fill="url(#waterGradient)" stroke="#B0BEC5" stroke-width="2"/>
+  <!-- Agua dentro -->
+  <path d="M 140 200 L 135 260 Q 135 295 170 295 L 230 295 Q 265 295 265 260 L 260 200 Z" fill="url(#waterLiquid)"/>
+  <!-- Brilho/reflexo na garrafa -->
+  <ellipse cx="155" cy="140" rx="12" ry="70" fill="white" opacity="0.2"/>
+  <!-- Bolhas de água -->
+  <circle cx="165" cy="220" r="3" fill="#4DD0E1" opacity="0.6"/>
+  <circle cx="190" cy="240" r="2" fill="#4DD0E1" opacity="0.6"/>
+  <circle cx="225" cy="225" r="2.5" fill="#4DD0E1" opacity="0.6"/>
+  <circle cx="175" cy="265" r="2" fill="#4DD0E1" opacity="0.6"/>
+  <circle cx="210" cy="275" r="2" fill="#4DD0E1" opacity="0.6"/>
+  <!-- Gotas na superfície (condensação externa) -->
+  <circle cx="145" cy="130" r="2" fill="#B3E5FC" opacity="0.7"/>
+  <circle cx="155" cy="180" r="1.5" fill="#B3E5FC" opacity="0.7"/>
+  <circle cx="250" cy="150" r="2" fill="#B3E5FC" opacity="0.7"/>
+  <!-- Rótulo -->
+  <rect x="150" y="140" width="100" height="50" fill="#E0F2F1" rx="3" stroke="#4DB6AC" stroke-width="1"/>
+  <text x="200" y="160" text-anchor="middle" font-size="13" font-family="Arial" font-weight="bold" fill="#00796B">Água Mineral</text>
+  <text x="200" y="178" text-anchor="middle" font-size="10" font-family="Arial" fill="#00897B">Natural</text>
+  <!-- Base da garrafa -->
+  <ellipse cx="200" cy="300" rx="65" ry="12" fill="#B0BEC5"/>
+  <!-- Line de fill (marcador) -->
+  <line x1="130" y1="200" x2="270" y2="200" stroke="#4DD0E1" stroke-width="1" opacity="0.4" stroke-dasharray="5,5"/>
+  <text x="200" y="350" text-anchor="middle" font-size="14" font-family="Arial" fill="#333">Água Mineral</text>
+</svg>

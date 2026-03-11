@@ -1,0 +1,26 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="pizzaGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="70%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF8C00"/>
+    </radialGradient>
+  </defs>
+  <circle cx="200" cy="200" r="180" fill="url(#pizzaGrad)"/>
+  <circle cx="200" cy="200" r="170" fill="#F4A460"/>
+  <!-- Pepperoni (muitos) -->
+  <circle cx="140" cy="140" r="16" fill="#DC143C"/>
+  <circle cx="200" cy="120" r="15" fill="#DC143C"/>
+  <circle cx="260" cy="150" r="16" fill="#DC143C"/>
+  <circle cx="160" cy="200" r="14" fill="#DC143C"/>
+  <circle cx="240" cy="210" r="15" fill="#DC143C"/>
+  <circle cx="200" cy="250" r="17" fill="#DC143C"/>
+  <circle cx="150" cy="270" r="14" fill="#DC143C"/>
+  <circle cx="250" cy="270" r="15" fill="#DC143C"/>
+  <circle cx="200" cy="180" r="13" fill="#DC143C"/>
+  <!-- Mussarela -->
+  <ellipse cx="200" cy="200" rx="45" ry="40" fill="#FFF8DC" opacity="0.6"/>
+  <!-- Borda -->
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#8B4513" stroke-width="15"/>
+  <text x="200" y="380" text-anchor="middle" font-size="18" font-family="Arial" fill="#333">Pizza Pepperoni</text>
+</svg>

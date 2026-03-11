@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="canGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6F00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF5722;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E64A19;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Tampa da lata -->
+  <ellipse cx="200" cy="75" rx="50" ry="18" fill="#E0E0E0"/>
+  <rect x="175" y="75" width="50" height="8" fill="#BDBDBD"/>
+  <!-- Corpo da lata -->
+  <rect x="120" y="90" width="160" height="200" rx="8" fill="url(#canGradient)"/>
+  <!-- Brilho/destaque -->
+  <ellipse cx="160" cy="150" rx="20" ry="60" fill="white" opacity="0.3"/>
+  <!-- Liquido dentro -->
+  <rect x="125" y="180" width="150" height="105" fill="url(#liquidGradient)" rx="4"/>
+  <!-- Rótulo -->
+  <rect x="130" y="140" width="140" height="60" fill="#FFD700" rx="4"/>
+  <text x="200" y="160" text-anchor="middle" font-size="16" font-family="Arial" font-weight="bold" fill="#FF6F00">Refrigerante</text>
+  <circle cx="160" cy="180" r="8" fill="#FF6F00"/>
+  <circle cx="200" cy="180" r="8" fill="#FF6F00"/>
+  <circle cx="240" cy="180" r="8" fill="#FF6F00"/>
+  <!-- Base da lata -->
+  <ellipse cx="200" cy="290" rx="50" ry="15" fill="#D68000"/>
+  <!-- Carbonação (bolhas) -->
+  <circle cx="145" cy="220" r="4" fill="#FFB74D" opacity="0.6"/>
+  <circle cx="200" cy="235" r="3" fill="#FFB74D" opacity="0.6"/>
+  <circle cx="255" cy="215" r="4" fill="#FFB74D" opacity="0.6"/>
+  <circle cx="170" cy="260" r="3" fill="#FFB74D" opacity="0.6"/>
+  <circle cx="230" cy="255" r="3" fill="#FFB74D" opacity="0.6"/>
+  <text x="200" y="330" text-anchor="middle" font-size="14" font-family="Arial" fill="#333">Refrigerante Lata</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bottleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFE082;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#FFF9C4;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#FFE082;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="liquidGradient2l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF7043;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E64A19;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Pescoço da garrafa -->
+  <rect x="175" y="45" width="50" height="25" fill="#E8E8E8" rx="3"/>
+  <!-- Tampa/rosca -->
+  <ellipse cx="200" cy="45" rx="30" ry="10" fill="#D0D0D0"/>
+  <rect x="185" y="40" width="30" height="8" fill="#A0A0A0"/>
+  <!-- Garrafa (parte superior) -->
+  <path d="M 150 70 L 130 110 L 130 280 Q 130 320 170 320 L 230 320 Q 270 320 270 280 L 270 110 L 250 70 Z" fill="url(#bottleGradient)" stroke="#D0D0D0" stroke-width="2"/>
+  <!-- Range de liquido -->
+  <path d="M 135 200 L 265 200" stroke="#FFE082" stroke-width="2" opacity="0.5"/>
+  <text x="280" y="205" font-size="11" fill="#999">2L</text>
+  <!-- Liquido dentro -->
+  <path d="M 135 220 L 135 275 Q 135 310 170 310 L 230 310 Q 265 310 265 275 L 265 220 Z" fill="url(#liquidGradient2l)"/>
+  <!-- Brilho/reflexo -->
+  <ellipse cx="160" cy="150" rx="15" ry="80" fill="white" opacity="0.2"/>
+  <!-- Bolhas de carbonação -->
+  <circle cx="160" cy="240" r="4" fill="#FFB74D" opacity="0.5"/>
+  <circle cx="190" cy="260" r="3" fill="#FFB74D" opacity="0.5"/>
+  <circle cx="230" cy="245" r="3" fill="#FFB74D" opacity="0.5"/>
+  <circle cx="170" cy="280" r="3" fill="#FFB74D" opacity="0.5"/>
+  <circle cx="220" cy="275" r="2" fill="#FFB74D" opacity="0.5"/>
+  <!-- Rótulo -->
+  <rect x="145" y="130" width="110" height="75" fill="#FFD54F" rx="3"/>
+  <text x="200" y="155" text-anchor="middle" font-size="14" font-family="Arial" font-weight="bold" fill="#FF6F00">Refrigerante</text>
+  <text x="200" y="175" text-anchor="middle" font-size="12" font-family="Arial" fill="#FF6F00">2 Litros</text>
+  <!-- Base da garrafa -->
+  <ellipse cx="200" cy="320" rx="65" ry="12" fill="#D0D0D0"/>
+  <text x="200" y="360" text-anchor="middle" font-size="14" font-family="Arial" fill="#333">Refrigerante 2L</text>
+</svg>
